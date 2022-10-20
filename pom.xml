@@ -12,6 +12,7 @@
 
     <modules>
         <module>smartmobility</module>
+        <module>payment</module>
     </modules>
 
     <properties>
