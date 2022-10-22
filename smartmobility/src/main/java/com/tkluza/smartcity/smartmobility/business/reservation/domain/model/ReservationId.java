@@ -1,6 +1,9 @@
 package com.tkluza.smartcity.smartmobility.business.reservation.domain.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -10,6 +13,9 @@ import java.time.LocalDateTime;
 
 @Embeddable
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ReservationId implements Serializable {
 
     @NotNull
