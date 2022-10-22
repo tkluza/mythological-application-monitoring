@@ -5,7 +5,8 @@ import com.tkluza.smartcity.smartmobility.business.reservation.domain.model.Rese
 import com.tkluza.smartcity.smartmobility.business.reservation.domain.model.ReservationStatus;
 import com.tkluza.smartcity.smartmobility.business.reservation.domain.repository.ReservationRepository;
 import com.tkluza.smartcity.smartmobility.business.reservation.domain.service.ReservationService;
-import com.tkluza.smartcity.smartmobility.business.reservation.dto.ChangeReservationCommand;
+import com.tkluza.smartcity.smartmobility.business.reservation.dto.CancelReservationCommand;
+import com.tkluza.smartcity.smartmobility.business.reservation.dto.ConfirmReservationCommand;
 import com.tkluza.smartcity.smartmobility.business.reservation.dto.CreateReservationCommand;
 
 import java.time.LocalDateTime;
@@ -42,7 +43,12 @@ public record ReservationServiceAdapter(
     }
 
     @Override
-    public void change(ChangeReservationCommand command) {
+    public void change(ConfirmReservationCommand command) {
+
+    }
+
+    @Override
+    public void cancel(CancelReservationCommand command) {
 
     }
 }

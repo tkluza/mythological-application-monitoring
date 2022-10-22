@@ -1,6 +1,8 @@
 package com.tkluza.smartcity.smartmobility.business.reservation.domain;
 
-import com.tkluza.smartcity.smartmobility.business.reservation.dto.ChangeReservationCommand;
+import com.tkluza.smartcity.smartmobility.business.reservation.domain.model.ReservationStatus;
+import com.tkluza.smartcity.smartmobility.business.reservation.dto.CancelReservationCommand;
+import com.tkluza.smartcity.smartmobility.business.reservation.dto.ConfirmReservationCommand;
 import com.tkluza.smartcity.smartmobility.business.reservation.dto.CreateReservationCommand;
 
 /**
@@ -16,9 +18,20 @@ public interface ReservationFacade {
     void createReservation(CreateReservationCommand command);
 
     /**
-     * Changes current status of given reservation.
+     * Confirms given reservation.
+     * <p>
+     * It changes status to {@link ReservationStatus#CONFIRMED}
      *
      * @param command with required information
      */
-    void changeReservation(ChangeReservationCommand command);
+    void confirmReservation(ConfirmReservationCommand command);
+
+    /**
+     * Cancels given reservation.
+     * <p>
+     * It changes status to {@link ReservationStatus#CANCELLED}
+     *
+     * @param command with required information
+     */
+    void cancelReservation(CancelReservationCommand command);
 }

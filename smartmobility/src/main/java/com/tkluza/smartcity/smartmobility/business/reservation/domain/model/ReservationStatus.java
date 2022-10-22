@@ -5,6 +5,6 @@ package com.tkluza.smartcity.smartmobility.business.reservation.domain.model;
  */
 public enum ReservationStatus {
     CREATED,
-    PAYED,
+    CONFIRMED,
     CANCELLED
 }

@@ -2,7 +2,8 @@ package com.tkluza.smartcity.smartmobility.business.reservation.api.adapter;
 
 import com.tkluza.smartcity.smartmobility.business.reservation.api.ReservationController;
 import com.tkluza.smartcity.smartmobility.business.reservation.domain.ReservationFacade;
-import com.tkluza.smartcity.smartmobility.business.reservation.dto.ChangeReservationCommand;
+import com.tkluza.smartcity.smartmobility.business.reservation.dto.CancelReservationCommand;
+import com.tkluza.smartcity.smartmobility.business.reservation.dto.ConfirmReservationCommand;
 import com.tkluza.smartcity.smartmobility.business.reservation.dto.CreateReservationCommand;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,7 +21,12 @@ public class ReservationControllerAdapter implements ReservationController {
     }
 
     @Override
-    public void changeReservation(@RequestBody ChangeReservationCommand command) {
-        reservationFacade.changeReservation(command);
+    public void confirmReservation(@RequestBody ConfirmReservationCommand command) {
+        reservationFacade.confirmReservation(command);
+    }
+
+    @Override
+    public void cancelReservation(@RequestBody CancelReservationCommand command) {
+        reservationFacade.cancelReservation(command);
     }
 }
