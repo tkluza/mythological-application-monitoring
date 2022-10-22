@@ -18,7 +18,7 @@ public class ReservationFacadeAdapter implements ReservationFacade {
 
     @Override
     public void confirmReservation(ConfirmReservationCommand command) {
-        reservationService.change(command);
+        reservationService.confirm(command);
     }
 
     @Override

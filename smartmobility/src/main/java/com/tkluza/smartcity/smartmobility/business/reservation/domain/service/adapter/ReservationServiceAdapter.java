@@ -9,8 +9,10 @@ import com.tkluza.smartcity.smartmobility.business.reservation.dto.CancelReserva
 import com.tkluza.smartcity.smartmobility.business.reservation.dto.ConfirmReservationCommand;
 import com.tkluza.smartcity.smartmobility.business.reservation.dto.CreateReservationCommand;
 
+import javax.persistence.EntityNotFoundException;
 import java.time.LocalDateTime;
 import java.util.UUID;
+import java.util.function.Consumer;
 
 import static java.util.Objects.requireNonNull;
 
@@ -21,7 +23,7 @@ public record ReservationServiceAdapter(
     @Override
     public void create(CreateReservationCommand command) {
 
-        validate(command);
+        validateCreation(command);
 
         ReservationEntity entity = ReservationEntity.builder()
                 .id(ReservationId.builder()
@@ -36,19 +38,51 @@ public record ReservationServiceAdapter(
         reservationRepository.save(entity);
     }
 
-    private void validate(CreateReservationCommand command) {
+    private void validateCreation(CreateReservationCommand command) {
         requireNonNull(command);
         requireNonNull(command);
         requireNonNull(command);
     }
 
     @Override
-    public void change(ConfirmReservationCommand command) {
+    public void confirm(ConfirmReservationCommand command) {
+        validateConfirmation(command);
 
+        update(command.reservationBusinessKey(),
+                reservationEntity -> {
+                    reservationEntity.setStatus(ReservationStatus.CONFIRMED);
+                    reservationEntity.setPrice(command.price());
+                }
+        );
+    }
+
+    private void validateConfirmation(ConfirmReservationCommand command) {
+        requireNonNull(command);
+        requireNonNull(command.price());
+        requireNonNull(command.reservationBusinessKey());
+    }
+
+    private void update(UUID businessKey, Consumer<ReservationEntity> consumer) {
+        reservationRepository.findByBusinessKey(businessKey)
+                .ifPresentOrElse(
+                        consumer,
+                        () -> {
+                            throw new EntityNotFoundException();
+                        }
+                );
     }
 
     @Override
     public void cancel(CancelReservationCommand command) {
+        validateCancellation(command);
 
+        update(command.reservationBusinessKey(),
+                reservationEntity -> reservationEntity.setStatus(ReservationStatus.CONFIRMED)
+        );
+    }
+
+    private void validateCancellation(CancelReservationCommand command) {
+        requireNonNull(command);
+        requireNonNull(command.reservationBusinessKey());
     }
 }

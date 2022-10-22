@@ -8,7 +8,7 @@ public interface ReservationService {
 
     void create(CreateReservationCommand command);
 
-    void change(ConfirmReservationCommand command);
+    void confirm(ConfirmReservationCommand command);
 
     void cancel(CancelReservationCommand command);
 }
