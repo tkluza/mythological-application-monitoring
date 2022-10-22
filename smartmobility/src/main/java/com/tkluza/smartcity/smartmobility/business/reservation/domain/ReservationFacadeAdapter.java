@@ -5,7 +5,9 @@ import com.tkluza.smartcity.smartmobility.business.reservation.dto.CancelReserva
 import com.tkluza.smartcity.smartmobility.business.reservation.dto.ConfirmReservationCommand;
 import com.tkluza.smartcity.smartmobility.business.reservation.dto.CreateReservationCommand;
 import lombok.RequiredArgsConstructor;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional
 @RequiredArgsConstructor
 public class ReservationFacadeAdapter implements ReservationFacade {
 

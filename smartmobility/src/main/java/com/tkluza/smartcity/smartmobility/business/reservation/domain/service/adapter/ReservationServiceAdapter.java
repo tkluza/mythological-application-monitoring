@@ -77,7 +77,7 @@ public record ReservationServiceAdapter(
         validateCancellation(command);
 
         update(command.reservationBusinessKey(),
-                reservationEntity -> reservationEntity.setStatus(ReservationStatus.CONFIRMED)
+                reservationEntity -> reservationEntity.setStatus(ReservationStatus.CANCELLED)
         );
     }
 
