@@ -41,7 +41,7 @@ public class ReservationEntity {
 
     @NotNull
     @BusinessKey
-    @Column(name = "business_key")
+    @Column(name = "business_key", columnDefinition = "UUID")
     private UUID businessKey;
 
     @ManyToOne(fetch = FetchType.LAZY)
