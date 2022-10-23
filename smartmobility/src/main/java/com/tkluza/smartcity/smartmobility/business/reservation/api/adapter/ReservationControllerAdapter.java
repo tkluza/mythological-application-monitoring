@@ -2,9 +2,9 @@ package com.tkluza.smartcity.smartmobility.business.reservation.api.adapter;
 
 import com.tkluza.smartcity.smartmobility.business.reservation.api.ReservationController;
 import com.tkluza.smartcity.smartmobility.business.reservation.domain.ReservationFacade;
-import com.tkluza.smartcity.smartmobility.business.reservation.dto.CancelReservationCommand;
-import com.tkluza.smartcity.smartmobility.business.reservation.dto.ConfirmReservationCommand;
-import com.tkluza.smartcity.smartmobility.business.reservation.dto.CreateReservationCommand;
+import com.tkluza.smartcity.smartmobility.business.reservation.dto.command.CancelReservationCommand;
+import com.tkluza.smartcity.smartmobility.business.reservation.dto.command.ConfirmReservationCommand;
+import com.tkluza.smartcity.smartmobility.business.reservation.dto.command.CreateReservationCommand;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;

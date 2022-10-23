@@ -1,4 +1,4 @@
-package com.tkluza.smartcity.smartmobility.business.reservation.dto;
+package com.tkluza.smartcity.smartmobility.business.reservation.dto.command;
 
 import java.math.BigDecimal;
 import java.util.UUID;

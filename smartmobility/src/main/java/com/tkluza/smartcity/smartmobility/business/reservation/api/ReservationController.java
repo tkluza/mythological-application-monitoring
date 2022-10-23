@@ -1,8 +1,8 @@
 package com.tkluza.smartcity.smartmobility.business.reservation.api;
 
-import com.tkluza.smartcity.smartmobility.business.reservation.dto.CancelReservationCommand;
-import com.tkluza.smartcity.smartmobility.business.reservation.dto.ConfirmReservationCommand;
-import com.tkluza.smartcity.smartmobility.business.reservation.dto.CreateReservationCommand;
+import com.tkluza.smartcity.smartmobility.business.reservation.dto.command.CancelReservationCommand;
+import com.tkluza.smartcity.smartmobility.business.reservation.dto.command.ConfirmReservationCommand;
+import com.tkluza.smartcity.smartmobility.business.reservation.dto.command.CreateReservationCommand;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;

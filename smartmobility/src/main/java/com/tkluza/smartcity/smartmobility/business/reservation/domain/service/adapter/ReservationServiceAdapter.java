@@ -1,13 +1,15 @@
 package com.tkluza.smartcity.smartmobility.business.reservation.domain.service.adapter;
 
+import com.tkluza.smartcity.smartmobility.business.reservation.domain.gateway.ReservationGateway;
 import com.tkluza.smartcity.smartmobility.business.reservation.domain.model.ReservationEntity;
 import com.tkluza.smartcity.smartmobility.business.reservation.domain.model.ReservationId;
 import com.tkluza.smartcity.smartmobility.business.reservation.domain.model.ReservationStatus;
 import com.tkluza.smartcity.smartmobility.business.reservation.domain.repository.ReservationRepository;
 import com.tkluza.smartcity.smartmobility.business.reservation.domain.service.ReservationService;
-import com.tkluza.smartcity.smartmobility.business.reservation.dto.CancelReservationCommand;
-import com.tkluza.smartcity.smartmobility.business.reservation.dto.ConfirmReservationCommand;
-import com.tkluza.smartcity.smartmobility.business.reservation.dto.CreateReservationCommand;
+import com.tkluza.smartcity.smartmobility.business.reservation.dto.command.CancelReservationCommand;
+import com.tkluza.smartcity.smartmobility.business.reservation.dto.command.ConfirmReservationCommand;
+import com.tkluza.smartcity.smartmobility.business.reservation.dto.command.CreateReservationCommand;
+import com.tkluza.smartcity.smartmobility.business.reservation.dto.event.ReservationCreatedEvent;
 
 import javax.persistence.EntityNotFoundException;
 import java.time.LocalDateTime;
@@ -17,6 +19,7 @@ import java.util.function.Consumer;
 import static java.util.Objects.requireNonNull;
 
 public record ReservationServiceAdapter(
+        ReservationGateway reservationGateway,
         ReservationRepository reservationRepository
 ) implements ReservationService {
 
@@ -25,17 +28,25 @@ public record ReservationServiceAdapter(
 
         validateCreation(command);
 
+        UUID reservationBusinessKey = UUID.randomUUID();
+
         ReservationEntity entity = ReservationEntity.builder()
                 .id(ReservationId.builder()
                         .autonomousCarId(command.autonomousCarId())
                         .userId(command.userId())
                         .reservationDate(LocalDateTime.now())
                         .build())
-                .businessKey(UUID.randomUUID())
+                .businessKey(reservationBusinessKey)
                 .status(ReservationStatus.CREATED)
                 .build();
 
         reservationRepository.save(entity);
+
+        reservationGateway.publishEvent(
+                ReservationCreatedEvent.builder()
+                        .reservationBusinessKey(reservationBusinessKey)
+                        .build()
+        );
     }
 
     private void validateCreation(CreateReservationCommand command) {

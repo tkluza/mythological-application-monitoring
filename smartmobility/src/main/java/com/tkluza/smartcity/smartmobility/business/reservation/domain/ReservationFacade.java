@@ -1,9 +1,9 @@
 package com.tkluza.smartcity.smartmobility.business.reservation.domain;
 
 import com.tkluza.smartcity.smartmobility.business.reservation.domain.model.ReservationStatus;
-import com.tkluza.smartcity.smartmobility.business.reservation.dto.CancelReservationCommand;
-import com.tkluza.smartcity.smartmobility.business.reservation.dto.ConfirmReservationCommand;
-import com.tkluza.smartcity.smartmobility.business.reservation.dto.CreateReservationCommand;
+import com.tkluza.smartcity.smartmobility.business.reservation.dto.command.CancelReservationCommand;
+import com.tkluza.smartcity.smartmobility.business.reservation.dto.command.ConfirmReservationCommand;
+import com.tkluza.smartcity.smartmobility.business.reservation.dto.command.CreateReservationCommand;
 
 /**
  * Entry point to Reservation domain. Includes all business process steps during reservation.

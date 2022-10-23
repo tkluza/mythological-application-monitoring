@@ -1,8 +1,8 @@
 package com.tkluza.smartcity.smartmobility.business.reservation.domain.service;
 
-import com.tkluza.smartcity.smartmobility.business.reservation.dto.CancelReservationCommand;
-import com.tkluza.smartcity.smartmobility.business.reservation.dto.ConfirmReservationCommand;
-import com.tkluza.smartcity.smartmobility.business.reservation.dto.CreateReservationCommand;
+import com.tkluza.smartcity.smartmobility.business.reservation.dto.command.CancelReservationCommand;
+import com.tkluza.smartcity.smartmobility.business.reservation.dto.command.ConfirmReservationCommand;
+import com.tkluza.smartcity.smartmobility.business.reservation.dto.command.CreateReservationCommand;
 
 public interface ReservationService {
 
