@@ -1,6 +1,6 @@
 package com.tkluza.smartcity.smartmobility.business.external.payment.http.adapter;
 
-import com.tkluza.smartcity.smartmobility.business.external.payment.dto.SendReservationExternalCommand;
+import com.tkluza.smartcity.smartmobility.business.external.payment.dto.CreatePaymentExternalCommand;
 import com.tkluza.smartcity.smartmobility.business.external.payment.http.PaymentExternalHttpClient;
 import com.tkluza.smartcity.smartmobility.business.external.payment.mapper.PaymentExternalMapper;
 import com.tkluza.smartcity.smartmobility.business.reservation.dto.event.ReservationCreatedEvent;
@@ -20,12 +20,12 @@ public record PaymentExternalHttpClientAdapter(
 
     @Override
     public void sendRequest(ReservationCreatedEvent event) {
-        SendReservationExternalCommand command = paymentExternalMapper.map(event);
+        CreatePaymentExternalCommand command = paymentExternalMapper.map(event);
 
         webClient.post()
                 .uri(PAYMENTS)
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .body(Mono.just(command), SendReservationExternalCommand.class)
+                .body(Mono.just(command), CreatePaymentExternalCommand.class)
                 .retrieve()
                 .bodyToMono(Void.class)
                 .block();

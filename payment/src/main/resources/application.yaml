@@ -1,0 +1,34 @@
+# Spring properties
+spring:
+  datasource:
+    url: jdbc:h2:mem:payment_db
+    username: sa
+    password: jordan23
+    driver-class-name: org.h2.Driver
+  h2:
+    console:
+      enabled: true
+  jpa:
+    generate-ddl: true
+    properties:
+      hibernate:
+        show_sql: true
+        ddl-auto: create-drop
+    open-in-view: false
+    defer-datasource-initialization: true
+  sql:
+    init:
+      mode: always
+
+# Server properties
+server:
+  port: 8091
+
+# Application internal properties
+payment:
+  http-client:
+    smart-mobility-application-url: localhost:8090,
+    network-latency-mills: 0
+  confirmation:
+    random-seed: 100
+    confirmation-threshold: 80
