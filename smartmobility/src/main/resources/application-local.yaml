@@ -1,3 +1,9 @@
+# Spring
+spring:
+  sql:
+    init:
+      mode: never
+
 # Application internal properties
 smart-mobility:
   http-client:

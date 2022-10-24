@@ -5,4 +5,4 @@ payment:
     threshold: 80
   http-client:
     smart-mobility-application-url: http://localhost:8090
-    network-latency-millis: 0
+    $network-latency-millis: 0

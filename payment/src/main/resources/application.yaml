@@ -22,6 +22,13 @@ spring:
     init:
       mode: always
 
+# Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+
 # Server properties
 server:
   port: 8091

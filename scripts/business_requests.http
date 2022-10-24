@@ -1,4 +1,4 @@
-// creates reservation
+### creates reservation
 POST localhost:8090/reservations
 Content-Type: application/json
 
@@ -7,8 +7,7 @@ Content-Type: application/json
   "autonomousCarId": 1
 }
 
-###
-// confirms reservation
+### confirms reservation
 PUT localhost:8090/reservations
 Content-Type: application/json
 
@@ -17,8 +16,7 @@ Content-Type: application/json
   "price": 22.4
 }
 
-###
-// cancels reservation
+### cancels reservation
 DELETE localhost:8090/reservations
 Content-Type: application/json
 
@@ -26,8 +24,7 @@ Content-Type: application/json
   "reservationBusinessKey": "02f4c1fc-30d5-48a7-8c6d-468d30761b2e"
 }
 
-###
-// creates payment
+### creates payment
 POST localhost:8091/payments
 Content-Type: application/json
 

@@ -1,0 +1,2 @@
+### actuator health for smart mobility
+GET localhost:8090/actuator/health
