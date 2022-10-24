@@ -9,7 +9,7 @@ Content-Type: application/json
 
 ###
 // confirms reservation
-PUT localhost:8080/reservations
+PUT localhost:8090/reservations
 Content-Type: application/json
 
 {
@@ -19,7 +19,7 @@ Content-Type: application/json
 
 ###
 // cancels reservation
-DELETE localhost:8080/reservations
+DELETE localhost:8090/reservations
 Content-Type: application/json
 
 {
