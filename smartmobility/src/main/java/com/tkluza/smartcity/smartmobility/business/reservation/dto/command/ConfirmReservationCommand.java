@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 public record ConfirmReservationCommand(
-        UUID reservationBusinessKey,
+        UUID reservationExternalBusinessKey,
         BigDecimal price
 ) {
 

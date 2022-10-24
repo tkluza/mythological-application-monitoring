@@ -6,7 +6,7 @@ import java.util.UUID;
 
 @Builder
 public record CreatePaymentExternalCommand(
-        UUID reservationBusinessKey
+        UUID reservationExternalBusinessKey
 ) {
 
 }

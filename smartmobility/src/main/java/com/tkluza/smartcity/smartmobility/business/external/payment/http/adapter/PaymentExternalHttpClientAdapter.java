@@ -8,7 +8,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Mono;
 
 @Slf4j
 public record PaymentExternalHttpClientAdapter(
@@ -16,7 +15,7 @@ public record PaymentExternalHttpClientAdapter(
         PaymentExternalMapper paymentExternalMapper
 ) implements PaymentExternalHttpClient {
 
-    private static final String PAYMENTS = "/employees";
+    private static final String PAYMENTS = "/payments";
 
     @Override
     public void sendRequest(ReservationCreatedEvent event) {
@@ -25,7 +24,7 @@ public record PaymentExternalHttpClientAdapter(
         webClient.post()
                 .uri(PAYMENTS)
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .body(Mono.just(command), CreatePaymentExternalCommand.class)
+                .bodyValue(command)
                 .retrieve()
                 .bodyToMono(Void.class)
                 .block();

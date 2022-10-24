@@ -26,9 +26,9 @@ server:
 
 # Application internal properties
 payment:
-  http-client:
-    smart-mobility-application-url: localhost:8090,
-    network-latency-mills: 0
   confirmation:
-    random-seed: 100
-    confirmation-threshold: 80
+    range: 100
+    threshold: 80
+  http-client:
+    smart-mobility-application-url: http://localhost:8090
+    network-latency-millis: 0

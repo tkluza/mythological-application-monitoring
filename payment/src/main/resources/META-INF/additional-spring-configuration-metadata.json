@@ -1,0 +1,24 @@
+{
+  "properties": [
+    {
+      "name": "payment.confirmation.range",
+      "type": "java.lang.String",
+      "description": "Description for payment.confirmation.range."
+    },
+    {
+      "name": "payment.confirmation.threshold",
+      "type": "java.lang.String",
+      "description": "Description for payment.confirmation.threshold."
+    },
+    {
+      "name": "payment.http-client.smart-mobility-application-url",
+      "type": "java.lang.String",
+      "description": "Description for payment.http-client.smart-mobility-application-url."
+    },
+    {
+      "name": "payment.http-client.network-latency-millis",
+      "type": "java.lang.String",
+      "description": "Description for payment.http-client.network-latency-millis."
+    }
+  ]
+}

@@ -10,7 +10,7 @@ public record PaymentExternalMapper() {
     public CreatePaymentExternalCommand map(ReservationCreatedEvent event) {
         requireNonNull(event);
         return CreatePaymentExternalCommand.builder()
-                .reservationBusinessKey(event.reservationBusinessKey())
+                .reservationExternalBusinessKey(event.reservationBusinessKey())
                 .build();
     }
 }

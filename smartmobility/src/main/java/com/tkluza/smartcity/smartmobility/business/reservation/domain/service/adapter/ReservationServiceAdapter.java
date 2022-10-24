@@ -59,7 +59,7 @@ public record ReservationServiceAdapter(
     public void confirm(ConfirmReservationCommand command) {
         validateConfirmation(command);
 
-        update(command.reservationBusinessKey(),
+        update(command.reservationExternalBusinessKey(),
                 reservationEntity -> {
                     reservationEntity.setStatus(ReservationStatus.CONFIRMED);
                     reservationEntity.setPrice(command.price());
@@ -70,7 +70,7 @@ public record ReservationServiceAdapter(
     private void validateConfirmation(ConfirmReservationCommand command) {
         requireNonNull(command);
         requireNonNull(command.price());
-        requireNonNull(command.reservationBusinessKey());
+        requireNonNull(command.reservationExternalBusinessKey());
     }
 
     private void update(UUID businessKey, Consumer<ReservationEntity> consumer) {
@@ -87,13 +87,13 @@ public record ReservationServiceAdapter(
     public void cancel(CancelReservationCommand command) {
         validateCancellation(command);
 
-        update(command.reservationBusinessKey(),
+        update(command.reservationExternalBusinessKey(),
                 reservationEntity -> reservationEntity.setStatus(ReservationStatus.CANCELLED)
         );
     }
 
     private void validateCancellation(CancelReservationCommand command) {
         requireNonNull(command);
-        requireNonNull(command.reservationBusinessKey());
+        requireNonNull(command.reservationExternalBusinessKey());
     }
 }
