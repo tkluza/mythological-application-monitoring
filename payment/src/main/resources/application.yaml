@@ -1,7 +1,7 @@
 # Spring properties
 spring:
   datasource:
-    url: jdbc:h2:mem:payment_db
+    url: jdbc:h2:./payment_db;AUTO_SERVER=TRUE
     username: sa
     password: jordan23
     driver-class-name: org.h2.Driver
@@ -13,7 +13,7 @@ spring:
     properties:
       hibernate:
         show_sql: true
-        ddl-auto: create-drop
+        ddl-auto: update
     open-in-view: false
     defer-datasource-initialization: true
   sql:
