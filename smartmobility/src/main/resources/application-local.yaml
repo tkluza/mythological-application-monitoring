@@ -1,0 +1,4 @@
+# Application internal properties
+smart-mobility:
+  http-client:
+    payment-application-url: http://localhost:8091

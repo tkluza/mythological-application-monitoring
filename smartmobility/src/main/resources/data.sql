@@ -9,7 +9,3 @@ INSERT INTO t_user(id, first_name, last_name, email)
 VALUES (1, 'Michael', 'Jordan', 'michael.jordan@chicago-bulls.com'),
        (2, 'Magic', 'Johnson', 'magic.johnson@los-angeles-lakers.com'),
        (3, 'Dirk', 'Nowitzki', 'dirk.nowitzki@dallas-mavericks.com');
-
--- insert reservation data
-INSERT INTO t_reservation(autonomous_car_id, user_id, reservation_date, business_key, status, price)
-VALUES (1, 1, CURRENT_TIMESTAMP, '02f4c1fc-30d5-48a7-8c6d-468d30761b2e', 'CREATED', NULL);

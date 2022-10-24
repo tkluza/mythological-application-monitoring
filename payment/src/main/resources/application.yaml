@@ -8,6 +8,8 @@ spring:
   h2:
     console:
       enabled: true
+      settings:
+        web-allow-others: true
   jpa:
     generate-ddl: true
     properties:
@@ -30,5 +32,5 @@ payment:
     range: 100
     threshold: 80
   http-client:
-    smart-mobility-application-url: http://localhost:8090
+    smart-mobility-application-url: http://smart-mobility:8090
     network-latency-millis: 0

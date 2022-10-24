@@ -1,4 +1,4 @@
-package com.tkluza.smartcity
+package com.tkluza.smartcity.payment
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan

@@ -8,6 +8,8 @@ spring:
   h2:
     console:
       enabled: true
+      settings:
+        web-allow-others: true
   jpa:
     generate-ddl: true
     properties:
@@ -18,7 +20,7 @@ spring:
     defer-datasource-initialization: true
   sql:
     init:
-      mode: never
+      mode: always
 
 # Server properties
 server:
@@ -27,4 +29,4 @@ server:
 # Application internal properties
 smart-mobility:
   http-client:
-    payment-application-url: http://localhost:8091
+    payment-application-url: http://payment:8091

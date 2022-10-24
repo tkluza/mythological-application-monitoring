@@ -5,13 +5,14 @@ volumes:
   grafana_data: { }
 
 networks:
-  mythological-application-monitoring:
+  smart-city:
 
 services:
 
+  # Prometheus
   prometheus:
     image: prom/prometheus:v2.39.1
-    container_name: mythological-application-monitoring-prometheus
+    container_name: smart-city-prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
@@ -29,11 +30,12 @@ services:
       - ./prometheus/:/etc/prometheus/
       - prometheus_data:/prometheus
     networks:
-      - back-tier
+      - smart-city
 
+  # Grafana
   grafana:
     image: grafana/grafana-oss:9.2.0
-    container_name: mythological-application-monitoring-grafana
+    container_name: smart-city-grafana
     depends_on:
       - prometheus
     ports:
@@ -45,11 +47,12 @@ services:
     env_file:
       - ./grafana/config
     networks:
-      - mythological-application-monitoring
+      - smart-city
 
+  # Cadvisor
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:v0.45.0
-    container_name: mythological-application-monitoring-cadvisor
+    container_name: smart-city-cadvisor
     ports:
       - "8080:8080"
     restart: unless-stopped
@@ -59,4 +62,36 @@ services:
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
     networks:
-      - mythological-application-monitoring
+      - smart-city
+
+  #  Smart Mobility
+  smart-mobility:
+    build:
+      context: ../smartmobility
+      dockerfile: Dockerfile
+    container_name: smart-city-smart-mobility
+    image: smart-city/smart-mobility
+    restart: unless-stopped
+    depends_on:
+      - payment
+    ports:
+      - "8090:8090"
+    healthcheck:
+      test: "exit 0"
+    networks:
+      - smart-city
+
+  #  Payment
+  payment:
+    build:
+      context: ../payment
+      dockerfile: Dockerfile
+    container_name: smart-city-payment
+    image: smart-city/payment
+    restart: unless-stopped
+    ports:
+      - "8091:8091"
+    healthcheck:
+      test: "exit 0"
+    networks:
+      - smart-city
