@@ -12,6 +12,7 @@ import com.tkluza.smartcity.smartmobility.business.reservation.dto.command.Cance
 import com.tkluza.smartcity.smartmobility.business.reservation.dto.command.ConfirmReservationCommand;
 import com.tkluza.smartcity.smartmobility.business.reservation.dto.command.CreateReservationCommand;
 import com.tkluza.smartcity.smartmobility.business.reservation.dto.event.ReservationCreatedEvent;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.EntityNotFoundException;
 import java.time.LocalDateTime;
@@ -21,6 +22,7 @@ import java.util.function.Consumer;
 
 import static java.util.Objects.requireNonNull;
 
+@Slf4j
 public record ReservationServiceAdapter(
         ReservationGateway reservationGateway,
         ReservationRepository reservationRepository
@@ -93,6 +95,8 @@ public record ReservationServiceAdapter(
                     reservationEntity.setPrice(command.price());
                 }
         );
+
+        log.info("Reservation: {} has been confirmed", command.reservationExternalBusinessKey());
     }
 
     private void validateConfirmation(ConfirmReservationCommand command) {
@@ -118,6 +122,8 @@ public record ReservationServiceAdapter(
         update(command.reservationExternalBusinessKey(),
                 reservationEntity -> reservationEntity.setStatus(ReservationStatus.CANCELLED)
         );
+
+        log.warn("Reservation: {} has been cancelled", command.reservationExternalBusinessKey());
     }
 
     private void validateCancellation(CancelReservationCommand command) {
