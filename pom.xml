@@ -93,6 +93,7 @@
                 <version>${lombok.version}</version>
                 <optional>true</optional>
             </dependency>
+            <!--TODO_STAGE_1 Add dependency to micrometer-->
         </dependencies>
     </dependencyManagement>
 

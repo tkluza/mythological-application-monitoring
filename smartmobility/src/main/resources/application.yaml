@@ -23,6 +23,7 @@ spring:
       mode: always
 
 # Actuator
+#  TODO_STAGE_1 Add prometheus endpoint to actuator
 management:
   endpoints:
     web:
