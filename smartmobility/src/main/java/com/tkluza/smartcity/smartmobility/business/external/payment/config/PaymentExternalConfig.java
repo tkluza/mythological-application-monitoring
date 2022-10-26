@@ -5,7 +5,6 @@ import com.tkluza.smartcity.smartmobility.business.external.payment.PaymentExter
 import com.tkluza.smartcity.smartmobility.business.external.payment.http.PaymentExternalHttpClient;
 import com.tkluza.smartcity.smartmobility.business.external.payment.http.adapter.PaymentExternalHttpClientAdapter;
 import com.tkluza.smartcity.smartmobility.business.external.payment.mapper.PaymentExternalMapper;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -13,16 +12,14 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Configuration
 public class PaymentExternalConfig {
 
-    @Value("${smart-mobility.http-client.payment-application-url}")
-    private String paymentApplicationUrl;
-
     @Bean
-    public PaymentExternalFacade paymentExternalFacade() {
-        WebClient webClient = WebClient.create(paymentApplicationUrl);
+    public PaymentExternalFacade paymentExternalFacade(PaymentExternalProperties paymentExternalProperties) {
+        WebClient webClient = WebClient.create(paymentExternalProperties.paymentApplicationUrl());
         PaymentExternalMapper paymentExternalMapper = new PaymentExternalMapper();
         PaymentExternalHttpClient httpClient = new PaymentExternalHttpClientAdapter(
                 webClient,
-                paymentExternalMapper
+                paymentExternalMapper,
+                paymentExternalProperties.networkLatencyMillis()
         );
 
         return new PaymentExternalFacadeAdapter(httpClient);

@@ -3,7 +3,7 @@ POST localhost:8090/reservations
 Content-Type: application/json
 
 {
-  "userId": 2,
+  "userId": 1,
   "autonomousCarId": 1
 }
 

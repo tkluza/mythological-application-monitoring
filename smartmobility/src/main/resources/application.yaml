@@ -1,7 +1,7 @@
 # Spring properties
 spring:
   datasource:
-    url: jdbc:h2:m2:smart_mobility_db
+    url: jdbc:h2:mem:smart_mobility_db
     username: sa
     password: jordan23
     driver-class-name: org.h2.Driver
@@ -14,7 +14,7 @@ spring:
     generate-ddl: true
     properties:
       hibernate:
-        show_sql: true
+        show_sql: false
         ddl-auto: update
     open-in-view: false
     defer-datasource-initialization: true
@@ -37,3 +37,4 @@ server:
 smart-mobility:
   http-client:
     payment-application-url: http://payment:8091
+    network-latency-millis: 2000
