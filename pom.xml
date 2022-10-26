@@ -93,7 +93,12 @@
                 <version>${lombok.version}</version>
                 <optional>true</optional>
             </dependency>
-            <!--TODO_STAGE_1 Add dependency to micrometer-->
+            <dependency>
+                <groupId>io.micrometer</groupId>
+                <artifactId>micrometer-registry-prometheus</artifactId>
+                <version>${micrometer.version}</version>
+                <scope>runtime</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
