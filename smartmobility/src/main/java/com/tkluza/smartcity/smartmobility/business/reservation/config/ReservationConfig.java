@@ -1,5 +1,6 @@
 package com.tkluza.smartcity.smartmobility.business.reservation.config;
 
+import com.tkluza.smartcity.smartmobility.business.autonomouscar.domain.AutonomousCarFacade;
 import com.tkluza.smartcity.smartmobility.business.reservation.domain.ReservationFacade;
 import com.tkluza.smartcity.smartmobility.business.reservation.domain.ReservationFacadeAdapter;
 import com.tkluza.smartcity.smartmobility.business.reservation.domain.gateway.ReservationGateway;
@@ -7,6 +8,7 @@ import com.tkluza.smartcity.smartmobility.business.reservation.domain.gateway.ad
 import com.tkluza.smartcity.smartmobility.business.reservation.domain.repository.ReservationRepository;
 import com.tkluza.smartcity.smartmobility.business.reservation.domain.service.ReservationService;
 import com.tkluza.smartcity.smartmobility.business.reservation.domain.service.adapter.ReservationServiceAdapter;
+import com.tkluza.smartcity.smartmobility.business.user.domain.UserFacade;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,9 +18,13 @@ public class ReservationConfig {
 
     @Bean
     public ReservationFacade reservationFacade(ApplicationEventPublisher applicationEventPublisher,
+                                               UserFacade userFacade,
+                                               AutonomousCarFacade autonomousCarFacade,
                                                ReservationRepository reservationRepository) {
         ReservationGateway reservationGateway = new ReservationGatewayAdapter(
-                applicationEventPublisher
+                applicationEventPublisher,
+                userFacade,
+                autonomousCarFacade
         );
         ReservationService reservationService = new ReservationServiceAdapter(
                 reservationGateway,

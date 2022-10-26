@@ -15,6 +15,9 @@ public interface ReservationController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     void createReservation(CreateReservationCommand command);
 
+    @PostMapping(path = "/random", consumes = MediaType.APPLICATION_JSON_VALUE)
+    void createRandomReservation();
+
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     void confirmReservation(ConfirmReservationCommand command);
 

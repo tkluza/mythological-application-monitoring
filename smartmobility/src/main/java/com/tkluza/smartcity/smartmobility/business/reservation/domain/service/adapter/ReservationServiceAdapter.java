@@ -56,6 +56,11 @@ public record ReservationServiceAdapter(
     }
 
     @Override
+    public void createRandom() {
+
+    }
+
+    @Override
     public void confirm(ConfirmReservationCommand command) {
         validateConfirmation(command);
 

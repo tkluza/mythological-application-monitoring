@@ -21,6 +21,11 @@ public class ReservationControllerAdapter implements ReservationController {
     }
 
     @Override
+    public void createRandomReservation() {
+        reservationFacade.createRandomReservation();
+    }
+
+    @Override
     public void confirmReservation(@RequestBody ConfirmReservationCommand command) {
         reservationFacade.confirmReservation(command);
     }

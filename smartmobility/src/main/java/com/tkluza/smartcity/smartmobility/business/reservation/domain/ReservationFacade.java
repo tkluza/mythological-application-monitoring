@@ -18,6 +18,11 @@ public interface ReservationFacade {
     void createReservation(CreateReservationCommand command);
 
     /**
+     * Creates new reservation based on random information about existing user and autonomous car.
+     */
+    void createRandomReservation();
+
+    /**
      * Confirms given reservation.
      * <p>
      * It changes status to {@link ReservationStatus#CONFIRMED}
