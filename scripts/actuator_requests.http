@@ -1,2 +1,11 @@
 ### actuator health for smart mobility
 GET localhost:8090/actuator/health
+
+### actuator health for payment
+GET localhost:8091/actuator/health
+
+### actuator prometheus for smart mobility
+GET localhost:8090/actuator/prometheus
+
+### actuator prometheus for payment
+GET localhost:8091/actuator/prometheus
