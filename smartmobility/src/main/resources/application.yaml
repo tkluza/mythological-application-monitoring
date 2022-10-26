@@ -23,12 +23,11 @@ spring:
       mode: always
 
 # Actuator
-#  TODO_STAGE_1 Add prometheus endpoint to actuator
 management:
   endpoints:
     web:
       exposure:
-        include: health
+        include: health, prometheus
 
 # Server properties
 server:
