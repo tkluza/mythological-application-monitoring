@@ -74,8 +74,8 @@ public record ReservationServiceAdapter(
 
     @Override
     public void createRandom() {
-        long randomUserId = random.nextLong(reservationGateway.findAllUsers().size());
-        long randomAutonomousCar = random.nextLong(reservationGateway.findAllAutonomousCars().size());
+        long randomUserId = random.nextLong(reservationGateway.findAllUsers().size()) + 1;
+        long randomAutonomousCar = random.nextLong(reservationGateway.findAllAutonomousCars().size()) + 1;
 
         create(
                 CreateReservationCommand.builder()
