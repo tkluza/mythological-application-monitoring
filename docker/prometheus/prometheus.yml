@@ -10,14 +10,15 @@ global:
 
 # A list of scrape configurations.
 scrape_configs:
-    # Here it's Prometheus itself.
+  # Here it's Prometheus itself.
   - job_name: 'prometheus'
     # Override the global default and scrape targets from this job every 5 seconds.
     scrape_interval: 15s
     static_configs:
       - targets: [ 'localhost:9090' ]
 
-  # TODO_STAGE_2 Add smart-mobility endpoint via static endpoint
-
-
-  # TODO_STAGE_2 Add payment endpoint via file import
+  - job_name: 'smart-city'
+    metrics_path: /actuator/prometheus
+    file_sd_configs:
+      - files:
+          - 'targets.json'

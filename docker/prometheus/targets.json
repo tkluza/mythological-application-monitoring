@@ -1,0 +1,20 @@
+[
+  {
+    "targets": [
+      "smart-mobility:8090"
+    ],
+    "labels": {
+      "language": "java",
+      "framework": "spring boot"
+    }
+  },
+  {
+    "targets": [
+      "payment:8091"
+    ],
+    "labels": {
+      "language": "kotlin",
+      "framework": "spring boot"
+    }
+  }
+]
