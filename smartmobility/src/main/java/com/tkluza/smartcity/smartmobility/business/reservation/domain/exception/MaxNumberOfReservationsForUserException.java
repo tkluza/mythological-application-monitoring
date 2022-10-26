@@ -5,6 +5,6 @@ import com.tkluza.smartcity.smartmobility.common.BusinessException;
 public class MaxNumberOfReservationsForUserException extends BusinessException {
 
     public MaxNumberOfReservationsForUserException(Long userId) {
-        super("Number of reservation for user: " + userId + "has been reached.");
+        super("Number of reservation for user: " + userId + " has been reached.");
     }
 }

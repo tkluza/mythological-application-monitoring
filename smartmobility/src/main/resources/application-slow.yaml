@@ -1,4 +1,4 @@
 # Application internal properties
-payment:
+smart-mobility:
   http-client:
     network-latency-millis: 5000

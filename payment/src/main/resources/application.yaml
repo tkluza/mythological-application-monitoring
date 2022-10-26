@@ -37,7 +37,7 @@ server:
 payment:
   confirmation:
     range: 100
-    threshold: 80
+    threshold: 50
   http-client:
     smart-mobility-application-url: http://smart-mobility:8090
-    network-latency-millis: 0
+    network-latency-millis: 2000

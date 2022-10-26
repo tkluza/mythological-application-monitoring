@@ -23,7 +23,7 @@ public class ReservationControllerAdapter implements ReservationController {
         try {
             reservationFacade.createReservation(command);
         } catch (BusinessException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);
         }
     }
 
