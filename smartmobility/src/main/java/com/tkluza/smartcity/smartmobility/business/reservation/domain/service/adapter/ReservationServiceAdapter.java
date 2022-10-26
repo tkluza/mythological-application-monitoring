@@ -26,9 +26,9 @@ public record ReservationServiceAdapter(
         ReservationRepository reservationRepository
 ) implements ReservationService {
 
-    private static final Random random = new Random();
     private static final int MAX_NUMBER_OF_RESERVATIONS_PER_USER = 2;
     private static final int MAX_NUMBER_OF_RESERVATIONS_PER_AUTONOMOUS_CAR = 4;
+    private static final Random random = new Random();
 
     @Override
     public void create(CreateReservationCommand command) {
@@ -61,11 +61,11 @@ public record ReservationServiceAdapter(
         requireNonNull(command);
         requireNonNull(command);
 
-        if (reservationRepository.findAllByUserId(command.userId()).size() > MAX_NUMBER_OF_RESERVATIONS_PER_USER) {
+        if (reservationRepository.findAllByUserId(command.userId()).size() >= MAX_NUMBER_OF_RESERVATIONS_PER_USER) {
             throw new MaxNumberOfReservationsForUserException(command.userId());
         }
 
-        if (reservationRepository.findAllByAutonomousCarId(command.autonomousCarId()).size() > MAX_NUMBER_OF_RESERVATIONS_PER_AUTONOMOUS_CAR) {
+        if (reservationRepository.findAllByAutonomousCarId(command.autonomousCarId()).size() >= MAX_NUMBER_OF_RESERVATIONS_PER_AUTONOMOUS_CAR) {
             throw new MaxNumberOfReservationsForAutonomousCarException(command.autonomousCarId());
         }
     }

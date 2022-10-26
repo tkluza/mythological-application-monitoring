@@ -19,6 +19,11 @@ public class ReservationFacadeAdapter implements ReservationFacade {
     }
 
     @Override
+    public void createRandomReservation() {
+        reservationService.createRandom();
+    }
+
+    @Override
     public void confirmReservation(ConfirmReservationCommand command) {
         reservationService.confirm(command);
     }

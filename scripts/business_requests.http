@@ -3,9 +3,14 @@ POST localhost:8090/reservations
 Content-Type: application/json
 
 {
-  "userId": 1,
+  "userId": 2,
   "autonomousCarId": 1
 }
+
+### cretes random reservation
+POST localhost:8090/reservations/random
+Content-Type: application/json
+
 
 ### confirms reservation
 PUT localhost:8090/reservations

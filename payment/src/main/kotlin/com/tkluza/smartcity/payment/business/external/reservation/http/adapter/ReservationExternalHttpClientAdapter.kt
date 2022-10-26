@@ -11,10 +11,13 @@ import org.springframework.web.reactive.function.client.WebClient
 
 class ReservationExternalHttpClientAdapter(
     private val webClient: WebClient,
-    private val mapper: ReservationExternalMapper
-) : ReservationExternalHttpClient {
+    private val mapper: ReservationExternalMapper,
+    private val networkLatency: Long,
+
+    ) : ReservationExternalHttpClient {
 
     override fun sendRequest(event: PaymentConfirmedEvent) {
+        Thread.sleep(networkLatency);
         webClient.put()
             .uri(RESERVATIONS)
             .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
@@ -25,6 +28,7 @@ class ReservationExternalHttpClientAdapter(
     }
 
     override fun sendRequest(event: PaymentRejectedEvent) {
+        Thread.sleep(networkLatency);
         webClient
             .method(HttpMethod.DELETE)
             .uri(RESERVATIONS)

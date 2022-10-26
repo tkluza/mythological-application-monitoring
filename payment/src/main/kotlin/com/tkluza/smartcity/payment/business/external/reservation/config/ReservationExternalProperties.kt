@@ -5,5 +5,5 @@ import org.springframework.boot.context.properties.ConfigurationProperties
 @ConfigurationProperties("payment.http-client")
 data class ReservationExternalProperties(
     var smartMobilityApplicationUrl: String = "",
-    var networkLatencyMillis: Int = 0
+    var networkLatencyMillis: Long = 0
 )

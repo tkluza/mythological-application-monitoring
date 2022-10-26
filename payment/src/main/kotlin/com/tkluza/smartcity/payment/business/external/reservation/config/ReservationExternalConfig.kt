@@ -16,7 +16,8 @@ class ReservationExternalConfig {
         ReservationExternalFacadeAdapter(
             reservationExternalHttpClient = ReservationExternalHttpClientAdapter(
                 webClient = WebClient.create(reservationExternalProperties.smartMobilityApplicationUrl),
-                mapper = ReservationExternalMapper()
+                mapper = ReservationExternalMapper(),
+                networkLatency = reservationExternalProperties.networkLatencyMillis
             )
         )
 }

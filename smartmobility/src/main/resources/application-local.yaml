@@ -2,7 +2,7 @@
 spring:
   sql:
     init:
-      mode: never
+      mode: always
 
 # Application internal properties
 smart-mobility:

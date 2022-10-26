@@ -1,7 +1,7 @@
 # Spring properties
 spring:
   datasource:
-    url: jdbc:h2:./smart_mobility_db;AUTO_SERVER=TRUE
+    url: jdbc:h2:m2:smart_mobility_db
     username: sa
     password: jordan23
     driver-class-name: org.h2.Driver
