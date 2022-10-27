@@ -22,6 +22,10 @@ spring:
     init:
       mode: always
 
+logging:
+  level:
+    root: debug
+
 # Actuator
 management:
   endpoints:
