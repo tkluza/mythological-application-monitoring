@@ -12,6 +12,8 @@ import com.tkluza.smartcity.smartmobility.business.reservation.dto.command.Cance
 import com.tkluza.smartcity.smartmobility.business.reservation.dto.command.ConfirmReservationCommand;
 import com.tkluza.smartcity.smartmobility.business.reservation.dto.command.CreateReservationCommand;
 import com.tkluza.smartcity.smartmobility.business.reservation.dto.event.ReservationCreatedEvent;
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.EntityNotFoundException;
@@ -32,10 +34,22 @@ public class ReservationServiceAdapter implements ReservationService {
     private final ReservationGateway reservationGateway;
     private final ReservationRepository reservationRepository;
 
-    public ReservationServiceAdapter(ReservationGateway reservationGateway,
+    private final Counter confirmedReservationCounter;
+    private final Counter cancelledReservationCounter;
+
+    public ReservationServiceAdapter(MeterRegistry meterRegistry,
+                                     ReservationGateway reservationGateway,
                                      ReservationRepository reservationRepository) {
         this.reservationGateway = reservationGateway;
         this.reservationRepository = reservationRepository;
+
+        this.confirmedReservationCounter = Counter.builder("business_confirmed_reservations_total")
+                .description("Total number of confirmed reservations")
+                .register(meterRegistry);
+        this.cancelledReservationCounter = Counter.builder("business_cancelled_reservations_total")
+                .description("Total number of cancelled reservations")
+                .tags()
+                .register(meterRegistry);
     }
 
     @Override
@@ -103,6 +117,7 @@ public class ReservationServiceAdapter implements ReservationService {
         );
 
         log.info("Reservation: {} has been confirmed", command.reservationExternalBusinessKey());
+        confirmedReservationCounter.increment();
     }
 
     private void validateConfirmation(ConfirmReservationCommand command) {
@@ -130,6 +145,7 @@ public class ReservationServiceAdapter implements ReservationService {
         );
 
         log.warn("Reservation: {} has been cancelled", command.reservationExternalBusinessKey());
+        cancelledReservationCounter.increment();
     }
 
     private void validateCancellation(CancelReservationCommand command) {

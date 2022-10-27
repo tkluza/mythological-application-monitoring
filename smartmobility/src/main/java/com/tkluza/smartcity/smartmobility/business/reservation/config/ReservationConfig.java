@@ -9,6 +9,7 @@ import com.tkluza.smartcity.smartmobility.business.reservation.domain.repository
 import com.tkluza.smartcity.smartmobility.business.reservation.domain.service.ReservationService;
 import com.tkluza.smartcity.smartmobility.business.reservation.domain.service.adapter.ReservationServiceAdapter;
 import com.tkluza.smartcity.smartmobility.business.user.domain.UserFacade;
+import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +18,8 @@ import org.springframework.context.annotation.Configuration;
 public class ReservationConfig {
 
     @Bean
-    public ReservationFacade reservationFacade(ApplicationEventPublisher applicationEventPublisher,
+    public ReservationFacade reservationFacade(MeterRegistry meterRegistry,
+                                               ApplicationEventPublisher applicationEventPublisher,
                                                UserFacade userFacade,
                                                AutonomousCarFacade autonomousCarFacade,
                                                ReservationRepository reservationRepository) {
@@ -27,6 +29,7 @@ public class ReservationConfig {
                 autonomousCarFacade
         );
         ReservationService reservationService = new ReservationServiceAdapter(
+                meterRegistry,
                 reservationGateway,
                 reservationRepository
         );
