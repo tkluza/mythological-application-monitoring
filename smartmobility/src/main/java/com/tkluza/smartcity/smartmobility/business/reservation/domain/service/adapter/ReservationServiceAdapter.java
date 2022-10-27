@@ -23,14 +23,20 @@ import java.util.function.Consumer;
 import static java.util.Objects.requireNonNull;
 
 @Slf4j
-public record ReservationServiceAdapter(
-        ReservationGateway reservationGateway,
-        ReservationRepository reservationRepository
-) implements ReservationService {
+public class ReservationServiceAdapter implements ReservationService {
 
     private static final int MAX_NUMBER_OF_RESERVATIONS_PER_USER = 2;
     private static final int MAX_NUMBER_OF_RESERVATIONS_PER_AUTONOMOUS_CAR = 4;
     private static final Random random = new Random();
+
+    private final ReservationGateway reservationGateway;
+    private final ReservationRepository reservationRepository;
+
+    public ReservationServiceAdapter(ReservationGateway reservationGateway,
+                                     ReservationRepository reservationRepository) {
+        this.reservationGateway = reservationGateway;
+        this.reservationRepository = reservationRepository;
+    }
 
     @Override
     public void create(CreateReservationCommand command) {
